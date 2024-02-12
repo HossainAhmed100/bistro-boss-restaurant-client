@@ -1,6 +1,9 @@
 function Footer() {
+  const getYear = () => {
+    return new Date().getFullYear();
+}
   return (
-    <div className="">
+    <footer className="">
     <div className="flex items-center justify-between flex-row">
         <div className="bg-sky-900 flex-1 p-10">
             <h2 className="text-white text-xl font-medium">CONTACT US</h2>
@@ -10,9 +13,9 @@ function Footer() {
         </div>
     </div>
     <div className="bg-black m-auto py-4">
-      <h4 className="text-medium font-medium text-white text-center">Copyright © Hossain AHmed. All rights reserved.</h4>
+      <h4 className="text-medium font-medium text-white text-center">Copyright © {getYear()} Hossain AHmed. All rights reserved.</h4>
     </div>
-    </div>
+    </footer>
   )
 }
 
