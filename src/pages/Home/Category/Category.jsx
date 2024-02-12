@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import {Image} from "@nextui-org/react";
+import './Category.css';
 
 import slide1 from '../../../assets/home/slide1.jpg';
 import slide2 from '../../../assets/home/slide2.jpg';
@@ -15,42 +17,40 @@ function Category() {
       slidesPerView={4}
       spaceBetween={30}
       centeredSlides={true}
-      pagination={{
-        clickable: true,
-      }}
+      pagination={{clickable: true,}}
       modules={[Pagination]}
-      className="mySwiper"
+      className="mySwiper mb-8"
     >
       <SwiperSlide>
-        <img src={slide1} alt=''/>
-        <h3 className='text-4xl uppercase text-center -m-t16 text-white'>
+        <Image isZoomed src={slide1}  alt="Salads"/>
+        <h3 className='text-4xl uppercase absolute -mt-16 text-white drop-shadow m-auto z-50'>
           Salads
         </h3>
-        </SwiperSlide>
+      </SwiperSlide>
       <SwiperSlide>
-        <img src={slide2} alt=''/>
-        <h3 className='text-4xl uppercase text-center -m-t16 text-white'>
-          Salads
+        <Image isZoomed src={slide3}  alt="Pizzas"/>
+        <h3 className='text-4xl uppercase absolute -mt-16 text-white drop-shadow m-auto z-50'>
+          Pizzas
         </h3>
-        </SwiperSlide>
+      </SwiperSlide>
       <SwiperSlide>
-        <img src={slide3} alt=''/>
-        <h3 className='text-4xl uppercase text-center -m-t16 text-white'>
-          Salads
+        <Image isZoomed src={slide2}  alt="Soups"/>
+        <h3 className='text-4xl uppercase absolute -mt-16 text-white drop-shadow m-auto z-50'>
+          Soups
         </h3>
-        </SwiperSlide>
+      </SwiperSlide>
       <SwiperSlide>
-        <img src={slide4} alt=''/>
-        <h3 className='text-4xl uppercase text-center -m-t16 text-white'>
-          Salads
+        <Image isZoomed src={slide4}  alt="Desserts"/>
+        <h3 className='text-4xl uppercase absolute -mt-16 text-white drop-shadow m-auto z-50'>
+          Desserts
         </h3>
-        </SwiperSlide>
+      </SwiperSlide>
       <SwiperSlide>
-        <img src={slide5} alt=''/>
-        <h3 className='text-4xl uppercase text-center -m-t16 text-white'>
-          Salads
+        <Image isZoomed src={slide5}  alt="Pizzas"/>
+        <h3 className='text-4xl uppercase absolute -mt-16 text-white drop-shadow m-auto z-50'>
+        Pizzas
         </h3>
-        </SwiperSlide>
+      </SwiperSlide>
     </Swiper>
   )
 }
