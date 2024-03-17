@@ -16,7 +16,7 @@ const Featured = () => {
         </div>
             <div className='md:flex justify-center items-center pb-10 px-36'>
                 <div>
-                  <Image isBlurred width={"100%"} src={FeaturedImg} alt="NextUI Album Cover" classNames="m-5" />
+                  <Image isBlurred radius="node" width={"100%"} src={FeaturedImg} alt="NextUI Album Cover" classNames="m-5" />
                 </div>
                 <div className='md:ml-10 z-50'>
                     <p className='text-white text-xl'>March 20, 2023</p>
