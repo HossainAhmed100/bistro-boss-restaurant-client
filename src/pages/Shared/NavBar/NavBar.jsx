@@ -1,6 +1,6 @@
 import { useState } from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem} from "@nextui-org/react";
-import { NavLink } from "react-router-dom";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem} from "@nextui-org/react";
+import { NavLink, Link } from "react-router-dom";
 import './NavBar.css'
 
 function NavBar() {
@@ -25,7 +25,7 @@ function NavBar() {
               className="sm:hidden"
             />
             <NavbarBrand>
-             <Link>
+             <Link to="/" className="flex items-center justify-center">
              <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
                   <path
                   clipRule="evenodd"
@@ -58,7 +58,7 @@ function NavBar() {
           </NavbarContent>
           <NavbarContent justify="end">
             <NavbarItem className="hidden lg:flex">
-              <Link href="/login">Login</Link>
+              <Link to="/login">Login</Link>
             </NavbarItem>
             <NavbarItem>
               <Button as={Link} color="primary" href="#" variant="flat">
@@ -74,7 +74,7 @@ function NavBar() {
                     index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
                   }
                   className="w-full"
-                  href="#"
+                  to="/"
                   size="lg"
                 >
                   {item}
