@@ -1,36 +1,52 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Card, CardBody, Image, Input } from "@nextui-org/react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaGithub, FaGoogle, FaFacebookF  } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginImg from "../../assets/others/authentication2.png";
-
+import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-  // const { loginUser } = useContext(AuthContext);
+  const {register, handleSubmit, reset, formState: { errors },} = useForm();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-
-  const createUser = event => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(name, email, password)
-  }
-
-
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    createUser(data.email, data.password)
+    .then(result => {
+      const loginuser = result.user;
+      console.log(loginuser)
+      updateUserProfile(data.name, data.photoUrl)
+      .then(() => {
+        console.log("User Profile Update")
+        reset()
+        Swal.fire({
+          icon: "success",
+          title: "User Created successfully.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }).catch((error) => {
+        console.log("User Profile Update ERROR")
+        console.log(error)
+      });
+      navigate("/")
+    })
+  };
 
   return (
     <section className="">
+      <Helmet title='SignUp Noew | BistroBoss'/>
       <div className="flex items-center justify-center min-h-screen">
         <div className='md:flex justify-center items-center'>
           <div>
             <Card className="w-[350px] shadow px-4">
             <CardBody>
-              <form onSubmit={createUser} className="flex min-w-full flex-col mb-6 md:mb-0 gap-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="flex min-w-full flex-col mb-6 md:mb-0 gap-4">
               <h3 className="text-center font-bold text-xl">Sign Up</h3>
               <Input 
                 name="name"
@@ -41,6 +57,25 @@ const SignUp = () => {
                 placeholder="Type your name" 
                 labelPlacement="outside" 
                 className="w-full"
+                {...register("name", { required: true })}
+                isInvalid={errors.name ? "true" : "false"}
+                color={errors.name ? "danger" : "default"}
+                errorMessage={errors.name && "Please enter your name"}
+              />
+              <Input 
+                name="photoUrl"
+                variant="bordered" 
+                radius="sm" 
+                type="text" 
+                label="Name" 
+                placeholder="Type your name" 
+                labelPlacement="outside" 
+                className="w-full"
+                defaultValue="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                {...register("photoUrl", { required: true })}
+                isInvalid={errors.photoUrl ? "true" : "false"}
+                color={errors.photoUrl ? "danger" : "default"}
+                errorMessage={errors.photoUrl && "Please enter your name"}
               />
               <Input 
                 name="email"
@@ -51,8 +86,13 @@ const SignUp = () => {
                 placeholder="Type your name"
                 labelPlacement="outside" 
                 className="w-full"
+                {...register("email", { required: true })}
+                isInvalid={errors.email ? "true" : "false"}
+                color={errors.email ? "danger" : "default"}
+                errorMessage={errors.email && "Please enter your email"}
               />
               <Input
+                name="password"
                 label="Password"
                 labelPlacement="outside"
                 variant="bordered"
@@ -60,14 +100,18 @@ const SignUp = () => {
                 endContent={
                   <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                     {isVisible ? (
-                      <HiEyeOff />
-                    ) : (
                       <HiEye />
+                    ) : (
+                      <HiEyeOff />
                     )}
                   </button>
                 }
                 type={isVisible ? "text" : "password"}
                 className="w-full"
+                {...register("password", { required: true })}
+                isInvalid={errors.password ? "true" : "false"}
+                color={errors.password ? "danger" : "default"}
+                errorMessage={errors.password && "Please enter new password"}
               />
               <Button type="submit" color="primary">Sign Up</Button>
               </form> 

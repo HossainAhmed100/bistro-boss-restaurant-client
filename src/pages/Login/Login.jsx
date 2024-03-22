@@ -1,29 +1,40 @@
 import { Button, Card, CardBody, Image, Input } from "@nextui-org/react";
 import LoginImg from "../../assets/others/authentication2.png";
+import { Helmet } from 'react-helmet-async';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
 import { useContext, useEffect, useRef, useState } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaGithub, FaGoogle, FaFacebookF  } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
   const captchaRef = useRef(null);
-  // const { loginUser } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const {register,handleSubmit,formState: { errors },} = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.patchname || "/";
   useEffect(() => {
     loadCaptchaEnginge(3); 
   }, [])
 
-  const handleLogin = event => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password)
+  const onSubmit = (data) => {
+    loginUser(data.email, data.password)
+    .then(result => {
+      console.log(result.user)
+      Swal.fire({
+        icon: "success",
+        title: "User log inSuccessfully.",
+      });
+      navigate(from, {replace: true})
+    })
   }
 
   const handleVelidateCaptcha = () => {
@@ -38,6 +49,7 @@ const Login = () => {
 
   return (
     <section className="">
+      <Helmet title='Login now | Bistro Boss'/>
       <div className="flex items-center justify-center min-h-screen">
         <div className='md:flex justify-center items-center'>
           <div>
@@ -46,17 +58,21 @@ const Login = () => {
           <div>
             <Card className="w-[350px] shadow px-4">
             <CardBody>
-              <form onSubmit={handleLogin} className="flex min-w-full flex-col mb-6 md:mb-0 gap-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="flex min-w-full flex-col mb-6 md:mb-0 gap-4">
               <h3 className="text-center font-bold text-xl">Login</h3>
               <Input 
-                name="email"
-                variant="bordered" 
                 radius="sm" 
                 type="email" 
+                name="email"
                 label="Email" 
-                placeholder="Type Your Email" 
-                labelPlacement="outside" 
                 className="w-full"
+                variant="bordered" 
+                labelPlacement="outside" 
+                placeholder="Type Your Email" 
+                {...register("email", { required: true })}
+                isInvalid={errors.email ? "true" : "false"}
+                color={errors.email ? "danger" : "default"}
+                errorMessage={errors.email && "Please enter your email"}
               />
               <Input
                 label="Password"
@@ -65,15 +81,15 @@ const Login = () => {
                 placeholder="Enter your password"
                 endContent={
                   <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                    {isVisible ? (
-                      <HiEyeOff />
-                    ) : (
-                      <HiEye />
-                    )}
+                    {isVisible ? (<HiEyeOff />) : (<HiEye />)}
                   </button>
                 }
                 type={isVisible ? "text" : "password"}
                 className="w-full"
+                {...register("password", { required: true })}
+                isInvalid={errors.password ? "true" : "false"}
+                color={errors.password ? "danger" : "default"}
+                errorMessage={errors.password && "Please enter new password"}
               />
               <LoadCanvasTemplate />	
               <Input 
