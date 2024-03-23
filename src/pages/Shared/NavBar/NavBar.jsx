@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Avatar, DropdownMenu, DropdownItem, DropdownTrigger, Dropdown} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Avatar, DropdownMenu, DropdownItem, DropdownTrigger, Dropdown, Badge} from "@nextui-org/react";
 import { NavLink, Link, redirect } from "react-router-dom";
 import './NavBar.css'
 import { AuthContext } from "../../../providers/AuthProvider";
+import { FaCartShopping } from "react-icons/fa6";
+import { VscSignOut } from "react-icons/vsc";
 
 function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,7 +61,7 @@ function NavBar() {
           </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <NavLink color="foreground" to="orderFood">
+          <NavLink color="foreground" to="orderFood/salad">
             OUR FOOD
           </NavLink>
         </NavbarItem>
@@ -68,39 +70,33 @@ function NavBar() {
         user ? 
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
-          <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="secondary"
-              name="Jason Hughes"
-              size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">zoey@example.com</p>
-            </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
-            <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
-            <DropdownItem key="system">System</DropdownItem>
-            <DropdownItem key="configurations">Configurations</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-            <DropdownItem key="logout" color="danger">
-              Log Out
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+            <Badge color="danger" content={50} shape="circle">
+              <FaCartShopping size={30}/>
+            </Badge>
           </NavbarItem>
-          <NavbarItem>
-            <Button onClick={handleLogOut} as={Link} color="primary" href="#" variant="flat">
-              LogOut
-            </Button>
+          <NavbarItem className="hidden lg:flex">
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <Avatar isBordered as="button" className="transition-transform" color="secondary" 
+                  name="Jason Hughes" size="sm"
+                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile" className="h-14 gap-2">
+                  <p className="font-semibold">Signed in as</p>
+                  <p className="font-semibold">zoey@example.com</p>
+                </DropdownItem>
+                <DropdownItem key="settings">My Settings</DropdownItem>
+                <DropdownItem key="team_settings">Team Settings</DropdownItem>
+                <DropdownItem onClick={handleLogOut} key="logout" color="danger" className="flex items-center justify-center flex-row gap-2">
+                  <span className="flex items-center gap-1 justify-start">
+                  <VscSignOut />
+                  Log Out
+                  </span>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </NavbarItem>
         </NavbarContent> :
         <NavbarContent justify="end">
