@@ -15,12 +15,12 @@ const Login = () => {
   const captchaRef = useRef(null);
   const { loginUser } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  // const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const {register,handleSubmit,formState: { errors },} = useForm();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.patchname || "/";
+  const from = location.state?.from?.pathname || "/";
   useEffect(() => {
     loadCaptchaEnginge(3); 
   }, [])
@@ -41,9 +41,9 @@ const Login = () => {
     const user_captcha_value = captchaRef.current.value;
     console.log("🚀 ~ handleVelidateCaptcha ~ user_captcha_value:", user_captcha_value)
     if(validateCaptcha(user_captcha_value)){
-      setIsSubmitDisabled(false)
+      // setIsSubmitDisabled(false)
     }else{
-      setIsSubmitDisabled(true)
+      // setIsSubmitDisabled(true)
     }
   }
 
@@ -101,7 +101,7 @@ const Login = () => {
               ref={captchaRef}
               />
               <Button onClick={() => handleVelidateCaptcha()} size="sm" color="default">Velidate Captcha</Button>
-              <Button isDisabled={isSubmitDisabled} type="submit" color="primary">Sign in</Button>
+              <Button  type="submit" color="primary">Sign in</Button>
               </form> 
               <div className="flex flex-col items-center justify-center space-y-2 my-6">
               <div className="flex items-center justify-center gap-2">
