@@ -5,10 +5,12 @@ import './NavBar.css'
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
 import { VscSignOut } from "react-icons/vsc";
+import useCart from "../../../hooks/useCart";
 
 function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
     const menuItems = [
         "Profile",
         "Dashboard",
@@ -70,9 +72,11 @@ function NavBar() {
         user ? 
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
-            <Badge color="danger" content={50} shape="circle">
-              <FaCartShopping size={30}/>
-            </Badge>
+            <Link to="/dashboard/cart">
+              <Badge color="danger" content={cart.length} shape="circle">
+                <FaCartShopping size={30}/>
+              </Badge>
+            </Link>
           </NavbarItem>
           <NavbarItem className="hidden lg:flex">
             <Dropdown placement="bottom-end">

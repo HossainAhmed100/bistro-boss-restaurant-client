@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 const MenuCategory = ({menuItem, menuBtnTitle, category}) => {
   return (
     <div className="mt-16">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="gap-4 grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 mx-6">
         {menuItem.map(item => <MenuItemCard key={item._id} item={item}/>)}
       </div>
       <div className="my-10 text-center">

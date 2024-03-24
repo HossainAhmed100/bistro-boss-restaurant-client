@@ -22,16 +22,16 @@ const ChefRecommends = () => {
   return (
     <section className="my-24">
         <SectionTitle heading={"CHEF RECOMMENDS"} subHeading={"---Should Try---"}/>
-        <div className="gap-10 grid grid-cols-2 sm:grid-cols-3">
+        <div className="gap-10 grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 mx-6">
         {list.map((item, index) => (
             <Card radius="none" shadow="sm" key={index}>
             <CardBody className="overflow-visible p-0">
                 <Image shadow="sm" radius="none" width="100%" lt={item.name} 
                 className="w-full object-cover h-[250px]" src={item.image} />
             </CardBody>
-            <div className="p-6 text-center m-auto">
+            <div className="py-4 px-2 text-center m-auto">
                 <b className="text-lg font-semibold">{item.name}</b>
-                <p className="text-default-500 text-sm line-clamp-2 mt-2 mb-6 w-80">{item.recipe}</p>
+                <p className="text-default-500 text-wrap text-sm lg:line-clamp-2 mt-2 mb-6">{item.recipe}</p>
                 <Button size="md" color="warning" variant="shadow">
                     ADD TO CART
                 </Button> 
