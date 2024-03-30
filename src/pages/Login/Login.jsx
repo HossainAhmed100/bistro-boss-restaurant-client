@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
   const captchaRef = useRef(null);
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, googleSignIn } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
   // const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -33,6 +33,14 @@ const Login = () => {
         icon: "success",
         title: "User log inSuccessfully.",
       });
+      navigate(from, {replace: true})
+    })
+  }
+
+  const handelGoogleSignIn = () => {
+    googleSignIn()
+    .then(result => {
+      console.log(result.user)
       navigate(from, {replace: true})
     })
   }
@@ -111,7 +119,7 @@ const Login = () => {
               <p className="text-normal text-gray-700 pb-2">Or sign in with</p>
               <div className="flex items-center justify-center gap-4">
               <Button isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaFacebookF /></Button>
-              <Button isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaGoogle /></Button>
+              <Button onClick={handelGoogleSignIn} isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaGoogle /></Button>
               <Button isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaGithub /></Button>
               </div>
               </div>

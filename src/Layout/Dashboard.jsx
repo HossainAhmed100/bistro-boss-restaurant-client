@@ -1,11 +1,17 @@
 import { NavLink, Outlet } from "react-router-dom"
-import { FaCartShopping, FaCalendarDays, FaWallet, FaBagShopping} from "react-icons/fa6";
+import { FaCartShopping, FaCalendarDays, FaWallet, FaBagShopping, FaBook, FaUsers } from "react-icons/fa6";
 import { AiFillHome } from "react-icons/ai";
 import { TbMessage2Star } from "react-icons/tb";
 import { MdBookmarkAdd,MdMail, MdMenu  } from "react-icons/md";
+import { ImSpoonKnife } from "react-icons/im";
+import { TfiMenuAlt } from "react-icons/tfi";
+
+
 import {Divider} from "@nextui-org/react";
 
 function Dashboard() {
+  // Todo: Get Admin from the database
+  const isAdmin = true;
   return (
     <div className="flex">
       <div className="w-80 min-h-screen bg-white border-x-1 p-6">
@@ -13,6 +19,15 @@ function Dashboard() {
             <h1 className="text-2xl font-extrabold cinzelFont tracking-wider">BISTRO BOSS</h1>
             <h3 className="tracking-[0.5rem] cinzelFont font-semibold">RESTAURANT</h3>
         </div>
+        {
+          isAdmin ? 
+        <ul className="space-y-1">
+          <NavItem title="Admin Home" icon={<AiFillHome size={22}/>} link={"/dashboard/home"}/>
+          <NavItem title="ADD ITEMS" icon={<ImSpoonKnife size={22}/>} link={"/dashboard/home"}/>
+          <NavItem title="MANAGE ITEMS" icon={<TfiMenuAlt size={22}/>} link={"/dashboard/home"}/>
+          <NavItem title="MANAGE BOOKINGS" icon={<FaBook size={22}/>} link={"/dashboard/home"}/>
+          <NavItem title="ALL USERS" icon={<FaUsers size={22}/>} link={"/dashboard/home"}/>
+        </ul> :
         <ul className="space-y-1">
           <NavItem title="User Home" icon={<AiFillHome  size={22}/>} link={"/dashboard/home"}/>
           <NavItem title="My Cart" icon={<FaCartShopping size={22}/>} link={"/dashboard/cart"}/>
@@ -21,6 +36,8 @@ function Dashboard() {
           <NavItem title="RESERVATION" icon={<FaCalendarDays size={21}/>} link={"/dashboard/reservetion"}/>
           <NavItem title="PAYMENT HISTORY" icon={<FaWallet size={21}/>} link={"/dashboard/paymenthistory"}/>
         </ul>
+        }
+        
         <Divider className="my-6" />
         <ul className="space-y-1">
           <NavItem title="Home" icon={<AiFillHome  size={22}/>} link={"/"}/>

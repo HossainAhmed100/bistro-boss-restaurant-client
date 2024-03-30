@@ -8,13 +8,49 @@ import LoginImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from 'sweetalert2';
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const {register, handleSubmit, reset, formState: { errors },} = useForm();
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const navigate = useNavigate();
+
+  const handelGoogleSignIn = () => {
+    googleSignIn()
+    .then(result => {
+      console.log(result.user)
+      axiosPublic.post("/users", {
+        userEmail: result?.user?.email,
+        userName: result?.user?.displayName,
+        userPic: result?.user?.photoURL,
+      })
+      .then(res => {
+        console.log(res.data)
+        if(res.data.insertedId){
+          reset()
+          Swal.fire({
+            icon: "success",
+            title: "User Created successfully.",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate("/")
+        }else{
+          Swal.fire({
+            icon: "error",
+            title: "This Email Alredy Exist",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate("/")
+        }
+      })
+    })
+  }
+
   const onSubmit = (data) => {
     createUser(data.email, data.password)
     .then(result => {
@@ -23,13 +59,22 @@ const SignUp = () => {
       updateUserProfile(data.name, data.photoUrl)
       .then(() => {
         console.log("User Profile Update")
-        reset()
-        Swal.fire({
-          icon: "success",
-          title: "User Created successfully.",
-          showConfirmButton: false,
-          timer: 1500
-        });
+        axiosPublic.post("/users", {
+          userEmail: data.email,
+          userName: data.name,
+          userPic: data.photoUrl,
+        })
+        .then(res => {
+          if(res.data.insertedId){
+            reset()
+            Swal.fire({
+              icon: "success",
+              title: "User Created successfully.",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
       }).catch((error) => {
         console.log("User Profile Update ERROR")
         console.log(error)
@@ -67,8 +112,8 @@ const SignUp = () => {
                 variant="bordered" 
                 radius="sm" 
                 type="text" 
-                label="Name" 
-                placeholder="Type your name" 
+                label="Profile Pic Url" 
+                placeholder="Type your Profile Pic Url" 
                 labelPlacement="outside" 
                 className="w-full"
                 defaultValue="https://i.pravatar.cc/150?u=a042581f4e29026704d"
@@ -123,7 +168,7 @@ const SignUp = () => {
               <p className="text-normal text-gray-700 pb-2">Or sign up with</p>
               <div className="flex items-center justify-center gap-4">
               <Button isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaFacebookF /></Button>
-              <Button isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaGoogle /></Button>
+              <Button onClick={handelGoogleSignIn} isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaGoogle /></Button>
               <Button isIconOnly color="default" variant="faded" aria-label="Take a photo"><FaGithub /></Button>
               </div>
               </div>

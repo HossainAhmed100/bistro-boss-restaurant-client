@@ -87,13 +87,13 @@ function NavBar() {
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
+                <DropdownItem textValue="userNameandEmail" key="profile" className="h-14 gap-2">
                   <p className="font-semibold">Signed in as</p>
                   <p className="font-semibold">zoey@example.com</p>
                 </DropdownItem>
-                <DropdownItem key="settings">My Settings</DropdownItem>
-                <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                <DropdownItem onClick={handleLogOut} key="logout" color="danger" className="flex items-center justify-center flex-row gap-2">
+                <DropdownItem textValue="mySettings" key="settings">My Settings</DropdownItem>
+                <DropdownItem textValue="teamSettings" key="team_settings">Team Settings</DropdownItem>
+                <DropdownItem textValue="logout" onClick={handleLogOut} key="logout" color="danger" className="flex items-center justify-center flex-row gap-2">
                   <span className="flex items-center gap-1 justify-start">
                   <VscSignOut />
                   Log Out
@@ -108,7 +108,7 @@ function NavBar() {
             <Link to="/login">Login</Link>
           </NavbarItem>
           <NavbarItem>
-              <Link color="primary" variant="flat" to="/login">
+              <Link color="primary" variant="flat" to="/signup">
                 Sign Up
               </Link>
           </NavbarItem>
