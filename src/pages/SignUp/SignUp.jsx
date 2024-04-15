@@ -23,8 +23,9 @@ const SignUp = () => {
     .then(result => {
       console.log(result.user)
       axiosPublic.post("/users", {
-        userEmail: result?.user?.email,
+        isAdmin: false,
         userName: result?.user?.displayName,
+        userEmail: result?.user?.email,
         userPic: result?.user?.photoURL,
       })
       .then(res => {
@@ -60,8 +61,9 @@ const SignUp = () => {
       .then(() => {
         console.log("User Profile Update")
         axiosPublic.post("/users", {
-          userEmail: data.email,
+          isAdmin: false,
           userName: data.name,
+          userEmail: data.email,
           userPic: data.photoUrl,
         })
         .then(res => {

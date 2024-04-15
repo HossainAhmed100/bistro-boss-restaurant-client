@@ -11,7 +11,7 @@ import {Divider} from "@nextui-org/react";
 
 function Dashboard() {
   // Todo: Get Admin from the database
-  const isAdmin = true;
+  const isAdmin = false;
   return (
     <div className="flex">
       <div className="w-80 min-h-screen bg-white border-x-1 p-6">
@@ -22,19 +22,19 @@ function Dashboard() {
         {
           isAdmin ? 
         <ul className="space-y-1">
-          <NavItem title="Admin Home" icon={<AiFillHome size={22}/>} link={"/dashboard/home"}/>
-          <NavItem title="ADD ITEMS" icon={<ImSpoonKnife size={22}/>} link={"/dashboard/home"}/>
-          <NavItem title="MANAGE ITEMS" icon={<TfiMenuAlt size={22}/>} link={"/dashboard/home"}/>
-          <NavItem title="MANAGE BOOKINGS" icon={<FaBook size={22}/>} link={"/dashboard/home"}/>
-          <NavItem title="ALL USERS" icon={<FaUsers size={22}/>} link={"/dashboard/home"}/>
+          <NavItem title="Admin Home" icon={<AiFillHome size={22}/>} link={"/dashboard/adminhome"}/>
+          <NavItem title="ADD ITEMS" icon={<ImSpoonKnife size={22}/>} link={"/dashboard/aditems"}/>
+          <NavItem title="MANAGE ITEMS" icon={<TfiMenuAlt size={22}/>} link={"/dashboard/manageItems"}/>
+          <NavItem title="MANAGE BOOKINGS" icon={<FaBook size={22}/>} link={"/dashboard/manageBookings"}/>
+          <NavItem title="ALL USERS" icon={<FaUsers size={22}/>} link={"/dashboard/users"}/>
         </ul> :
         <ul className="space-y-1">
-          <NavItem title="User Home" icon={<AiFillHome  size={22}/>} link={"/dashboard/home"}/>
-          <NavItem title="My Cart" icon={<FaCartShopping size={22}/>} link={"/dashboard/cart"}/>
-          <NavItem title="MY BOOKING" icon={<MdBookmarkAdd size={23}/>} link={"/dashboard/mybooking"}/>
-          <NavItem title="ADD REVIEW" icon={<TbMessage2Star size={22}/>} link={"/dashboard/addreviews"}/>
+          <NavItem title="User Home" icon={<AiFillHome  size={22}/>} link={"/dashboard/userHome"}/>
           <NavItem title="RESERVATION" icon={<FaCalendarDays size={21}/>} link={"/dashboard/reservetion"}/>
           <NavItem title="PAYMENT HISTORY" icon={<FaWallet size={21}/>} link={"/dashboard/paymenthistory"}/>
+          <NavItem title="My Cart" icon={<FaCartShopping size={22}/>} link={"/dashboard/cart"}/>
+          <NavItem title="ADD REVIEW" icon={<TbMessage2Star size={22}/>} link={"/dashboard/addreviews"}/>
+          <NavItem title="MY BOOKING" icon={<MdBookmarkAdd size={23}/>} link={"/dashboard/mybooking"}/>
         </ul>
         }
         

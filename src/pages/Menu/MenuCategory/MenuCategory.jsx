@@ -10,11 +10,11 @@ const MenuCategory = ({menuItem, menuBtnTitle, category}) => {
         {menuItem.map(item => <MenuItemCard key={item._id} item={item}/>)}
       </div>
       <div className="my-10 text-center">
-          <Button variant="bordered" color="default">
+      <Button variant="bordered" color="default">
         <Link to={`/orderFood/${category}`}>
-            {menuBtnTitle}
+          {menuBtnTitle}
         </Link>
-            </Button>
+      </Button>
       </div>
     </div>
   )

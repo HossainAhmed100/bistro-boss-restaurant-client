@@ -14,7 +14,7 @@ import { Image } from '@nextui-org/react';
 
 function Category() {
   return (
-    <section>
+    <section className='menuCategory'>
       <SectionTitle heading={"ORDER ONLINE"} subHeading={"---From 11:00am to 10:00pm---"}/>
       <Swiper
       slidesPerView={4}
