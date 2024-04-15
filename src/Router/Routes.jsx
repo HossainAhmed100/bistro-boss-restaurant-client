@@ -11,6 +11,7 @@ import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import AllUser from "../pages/Dashboard/AllUsers/AllUser";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 
 export const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
         {
           path: "userHome",
           element: <UserHome />
+        },
+        {
+          path: "adminHome",
+          element: <AdminHome />
         },
         {
           path: "users",

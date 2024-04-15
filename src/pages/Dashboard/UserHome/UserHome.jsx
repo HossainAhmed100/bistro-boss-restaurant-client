@@ -1,4 +1,4 @@
-import { FaBoxesStacked, FaWallet, FaUsers, FaTruckMoving} from "react-icons/fa6";
+import { FaWallet, FaStore, FaPhone  } from "react-icons/fa6";
 
 
 function UserHome() {
@@ -9,23 +9,18 @@ function UserHome() {
         <div className="flex items-center justify-center gap-4 py-8">
           <ItemCart styleClass="bg-gradient-to-r from-indigo-400 to-violet-400"
             number={3000}
-            title="Revenue"
+            title="Menu"
             icon={<FaWallet size={35}/>}
           />
           <ItemCart styleClass="bg-gradient-to-r from-orange-400 to-amber-400"
             number={3000}
-            title="Customers"
-            icon={<FaUsers size={35}/>}
+            title="Shop"
+            icon={<FaStore size={35}/>}
           />
           <ItemCart styleClass="bg-gradient-to-r from-purple-400 to-pink-400"
             number={3000}
-            title="Products"
-            icon={<FaBoxesStacked  size={35}/>}
-          />
-          <ItemCart styleClass="bg-gradient-to-r from-cyan-400 to-blue-400"
-            number={3000}
-            title="Orders"
-            icon={<FaTruckMoving size={35}/>}
+            title="Contact"
+            icon={<FaPhone size={35}/>}
           />
         </div>
       </div>
