@@ -12,6 +12,7 @@ import Cart from "../pages/Dashboard/Cart/Cart";
 import AllUser from "../pages/Dashboard/AllUsers/AllUser";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import UserReservation from "../pages/Dashboard/UserReservation/UserReservation";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
         {
           path: "adminHome",
           element: <AdminHome />
+        },
+        {
+          path: "userReservation",
+          element: <UserReservation />
         },
         {
           path: "users",

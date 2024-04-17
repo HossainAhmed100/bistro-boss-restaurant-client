@@ -30,7 +30,7 @@ function Dashboard() {
         </ul> :
         <ul className="space-y-1">
           <NavItem title="User Home" icon={<AiFillHome  size={22}/>} link={"/dashboard/userHome"}/>
-          <NavItem title="RESERVATION" icon={<FaCalendarDays size={21}/>} link={"/dashboard/reservetion"}/>
+          <NavItem title="RESERVATION" icon={<FaCalendarDays size={21}/>} link={"/dashboard/userReservation"}/>
           <NavItem title="PAYMENT HISTORY" icon={<FaWallet size={21}/>} link={"/dashboard/paymenthistory"}/>
           <NavItem title="My Cart" icon={<FaCartShopping size={22}/>} link={"/dashboard/cart"}/>
           <NavItem title="ADD REVIEW" icon={<TbMessage2Star size={22}/>} link={"/dashboard/addreviews"}/>

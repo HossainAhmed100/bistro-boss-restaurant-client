@@ -1,5 +1,5 @@
-import { FaWallet, FaStore, FaPhone  } from "react-icons/fa6";
-
+import { FaWallet, FaStore, FaPhone, FaCartShopping, FaStar, FaCalendarDays } from "react-icons/fa6";
+import {Divider, Avatar} from "@nextui-org/react";
 
 function UserHome() {
   return (
@@ -22,6 +22,37 @@ function UserHome() {
             title="Contact"
             icon={<FaPhone size={35}/>}
           />
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="flex-1 p-8 flex flex-col items-center justify-center bg-[#FFEDD5] h-72">
+            <Avatar className="w-50 border-5 border-[#D1A054] h-20 text-3xl" 
+            src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
+            <h1 className="text-gray-600 font-medium mt-2">Hossain Ahmed</h1>
+          </div>
+            <Divider orientation="vertical" className="bg-[#D1A054] w-1 h-72"/>
+          <div className="flex-1 p-8 flex items-center justify-center bg-[#FEF9C3] h-72">
+            <div className="cinzelFont">
+              <h1 className="text-2xl font font-bold">YOUR ACTIVITIES</h1>
+              <div className="space-y-3 mt-4">
+                <div className="flex items-center justify-start gap-4 text-blue-500">
+                  <FaCartShopping size={24}/>
+                  <h1 className="text-md font-semibold">ORDERS : {5}</h1>
+                </div>
+                <div className="flex items-center justify-start gap-4 text-cyan-500">
+                  <FaStar size={24}/>
+                  <h1 className="text-md font-semibold">REVIEWS : {3}</h1>
+                </div>
+                <div className="flex items-center justify-start gap-4 text-orange-500">
+                  <FaCalendarDays size={24}/>
+                  <h1 className="text-md font-semibold">BOOKINGS : {1}</h1>
+                </div>
+                <div className="flex items-center justify-start gap-4 text-rose-500">
+                  <FaWallet size={24}/>
+                  <h1 className="text-md font-semibold">PAYMENT : {8}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
