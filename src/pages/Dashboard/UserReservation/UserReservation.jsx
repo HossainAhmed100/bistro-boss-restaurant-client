@@ -3,6 +3,7 @@ import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { LuClipboardList } from "react-icons/lu";
 import { FaPhoneAlt, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 
 function UserReservation() {
@@ -12,6 +13,7 @@ function UserReservation() {
     };
   return (
     <section>
+      <Helmet title='My Resirvation | User'/>
       <div>
         <SectionTitle heading={"BOOK A TABLE"} subHeading={"---Reservation---"}/>
         <div className="lg:px-8 md:px-4 px-2">

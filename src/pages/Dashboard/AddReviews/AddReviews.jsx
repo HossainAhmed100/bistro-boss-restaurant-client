@@ -1,9 +1,10 @@
+import { Helmet } from "react-helmet-async"
 
 function AddReviews() {
   return (
-    <div>
-      
-    </div>
+    <section>
+    <Helmet title='Give Reviews | User'/>
+    </section>
   )
 }
 

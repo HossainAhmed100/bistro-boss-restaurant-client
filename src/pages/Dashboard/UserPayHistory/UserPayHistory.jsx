@@ -6,7 +6,7 @@ import "./UserPayHistory.css"
 function UserPayHistory() {
   return (
     <div>
-      <Helmet title='My Cart | Bistro Boss'/>
+      <Helmet title='Payment History | User'/>
       <div className="mx-16 space-y-4">
       <SectionTitle heading={"PAYMENT HISTORY"} subHeading={"---Get Your PAY History---"}/>
 

@@ -1,9 +1,10 @@
+import { Helmet } from "react-helmet-async";
 import { FaWallet, FaStore, FaPhone, FaCartShopping, FaStar, FaCalendarDays } from "react-icons/fa6";
 import {Avatar} from "@nextui-org/react";
-
 function UserHome() {
   return (
     <section>
+      <Helmet title='My Dashboard | User'/>
       <div className="p-10">
         <h1 className="text-3xl cinzelFont font font-bold">HI, WELCOME BACK!</h1>
         <div className="grid grid-col-1 lg:grid-cols-3 md:grid-cols-2 gap-4 py-8">
