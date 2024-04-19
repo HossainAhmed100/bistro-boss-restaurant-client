@@ -8,7 +8,7 @@ function UserPayHistory() {
     <div>
       <Helmet title='My Cart | Bistro Boss'/>
       <div className="mx-16 space-y-4">
-      <SectionTitle heading={"MANAGE ALL USERS"} subHeading={"---How many??---"}/>
+      <SectionTitle heading={"PAYMENT HISTORY"} subHeading={"---Get Your PAY History---"}/>
 
       <div className="p-4 z-0 flex relative justify-between gap-4 bg-content1 overflow-auto rounded-large shadow-small w-full items-center">
         <h1 className="text-xl font-medium">TOTAL PAYMENTS :</h1>
@@ -24,7 +24,7 @@ function UserPayHistory() {
         <TableColumn>PAYMENT DATE</TableColumn>
         </TableHeader>
         <TableBody emptyContent={"No rows to display."}>
-        {[1, 2, 3, 4, 5, 6].map((item) => (<TableRow key={item}>
+        {[1, 2, 3, 4].map((item) => (<TableRow key={item}>
             <TableCell>
             <p className="text-base text-gray-500">info@gmail.com</p>
             </TableCell>

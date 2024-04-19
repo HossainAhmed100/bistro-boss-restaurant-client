@@ -1,12 +1,12 @@
 import { FaWallet, FaStore, FaPhone, FaCartShopping, FaStar, FaCalendarDays } from "react-icons/fa6";
-import {Divider, Avatar} from "@nextui-org/react";
+import {Avatar} from "@nextui-org/react";
 
 function UserHome() {
   return (
     <section>
       <div className="p-10">
         <h1 className="text-3xl cinzelFont font font-bold">HI, WELCOME BACK!</h1>
-        <div className="flex items-center justify-center gap-4 py-8">
+        <div className="grid grid-col-1 lg:grid-cols-3 md:grid-cols-2 gap-4 py-8">
           <ItemCart styleClass="bg-gradient-to-r from-indigo-400 to-violet-400"
             number={3000}
             title="Menu"
@@ -24,12 +24,11 @@ function UserHome() {
           />
         </div>
         <div className="flex items-center justify-center">
-          <div className="flex-1 p-8 flex flex-col items-center justify-center bg-[#FFEDD5] h-72">
+          <div className="flex-1 md:border-r-4 border-[#D1A054] p-8 flex flex-col items-center justify-center bg-[#FFEDD5] h-72">
             <Avatar className="w-50 border-5 border-[#D1A054] h-20 text-3xl" 
             src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
             <h1 className="text-gray-600 font-medium mt-2">Hossain Ahmed</h1>
           </div>
-            <Divider orientation="vertical" className="bg-[#D1A054] w-1 h-72"/>
           <div className="flex-1 p-8 flex items-center justify-center bg-[#FEF9C3] h-72">
             <div className="cinzelFont">
               <h1 className="text-2xl font font-bold">YOUR ACTIVITIES</h1>
