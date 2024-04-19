@@ -18,7 +18,7 @@ const Featured = () => {
                 <div>
                   <Image isBlurred radius="node" width={"100%"} src={FeaturedImg} alt="NextUI Album Cover" classNames="m-5" />
                 </div>
-                <div className='md:ml-10 z-50'>
+                <div className='md:ml-10 z-10'>
                     <p className='text-white text-xl'>March 20, 2023</p>
                     <p className='uppercase text-white text-xl'>WHERE CAN I GET SOME?</p>
                     <p className='text-white text-sm font-light tracking-wide mb-6'>
