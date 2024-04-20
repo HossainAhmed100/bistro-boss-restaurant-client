@@ -1,7 +1,7 @@
-import { Helmet } from "react-helmet-async"
-import SectionTitle from "../../../components/SectionTitle/SectionTitle"
+import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import {Table, TableHeader, Button, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
-import "./UserPayHistory.css"
+import "./UserPayHistory.css";
 
 function UserPayHistory() {
   return (

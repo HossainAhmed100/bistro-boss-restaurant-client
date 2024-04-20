@@ -33,7 +33,7 @@ function Dashboard() {
           <NavItem title="RESERVATION" icon={<FaCalendarDays size={21}/>} link={"/dashboard/userReservation"}/>
           <NavItem title="PAYMENT HISTORY" icon={<FaWallet size={21}/>} link={"/dashboard/userpaymenthistory"}/>
           <NavItem title="My Cart" icon={<FaCartShopping size={22}/>} link={"/dashboard/cart"}/>
-          <NavItem title="ADD REVIEW" icon={<TbMessage2Star size={22}/>} link={"/dashboard/addreviews"}/>
+          <NavItem title="ADD REVIEW" icon={<TbMessage2Star size={22}/>} link={"/dashboard/giveReviews"}/>
           <NavItem title="MY BOOKING" icon={<MdBookmarkAdd size={23}/>} link={"/dashboard/mybooking"}/>
         </ul>
         }

@@ -14,6 +14,7 @@ import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import UserReservation from "../pages/Dashboard/UserReservation/UserReservation";
 import UserPayHistory from "../pages/Dashboard/UserPayHistory/UserPayHistory";
+import AddReviews from "../pages/Dashboard/AddReviews/AddReviews";
 
 export const router = createBrowserRouter([
     {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
         {
           path: "userpaymenthistory",
           element: <UserPayHistory />
+        },
+        {
+          path: "giveReviews",
+          element: <AddReviews />
         },
         {
           path: "allUsers",
