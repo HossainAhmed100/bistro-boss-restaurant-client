@@ -16,6 +16,7 @@ import UserReservation from "../pages/Dashboard/UserReservation/UserReservation"
 import UserPayHistory from "../pages/Dashboard/UserPayHistory/UserPayHistory";
 import AddReviews from "../pages/Dashboard/AddReviews/AddReviews";
 import UserMayBookings from "../pages/Dashboard/UserMayBookings/UserMayBookings";
+import PageNotFound from "../pages/Home/PageNotFound/PageNotFound";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
         {
           path: "/signup",
           element: <SignUp />
+        },
+        {
+          path: "*",
+          element: <PageNotFound />
         },
         {
           path: "secret",
