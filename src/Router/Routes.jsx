@@ -8,15 +8,16 @@ import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoutes from "./PrivateRoutes";
 import Secret from "../pages/Shared/Secret/Secret";
 import Dashboard from "../Layout/Dashboard";
-import Cart from "../pages/Dashboard/Cart/Cart";
-import AllUser from "../pages/Dashboard/AllUsers/AllUser";
-import UserHome from "../pages/Dashboard/UserHome/UserHome";
-import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
-import UserReservation from "../pages/Dashboard/UserReservation/UserReservation";
-import UserPayHistory from "../pages/Dashboard/UserPayHistory/UserPayHistory";
-import AddReviews from "../pages/Dashboard/AddReviews/AddReviews";
-import UserMayBookings from "../pages/Dashboard/UserMayBookings/UserMayBookings";
 import PageNotFound from "../pages/Home/PageNotFound/PageNotFound";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
+import Cart from "../pages/Dashboard/User/Cart/Cart";
+import UserHome from "../pages/Dashboard/User/UserHome/UserHome";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
+import UserReservation from "../pages/Dashboard/User/UserReservation/UserReservation";
+import UserPayHistory from "../pages/Dashboard/User/UserPayHistory/UserPayHistory";
+import AddReviews from "../pages/Dashboard/User/AddReviews/AddReviews";
+import UserMayBookings from "../pages/Dashboard/User/UserMayBookings/UserMayBookings";
+import AddItem from "../pages/Dashboard/Admin/AddItem/AddItem";
 
 export const router = createBrowserRouter([
     {
@@ -88,8 +89,12 @@ export const router = createBrowserRouter([
           element: <UserMayBookings />
         },
         {
-          path: "allUsers",
-          element: <AllUser />
+          path: "aditems",
+          element: <AddItem />
+        },
+        {
+          path: "manageUsers",
+          element: <AllUsers />
         }
       ]
     }

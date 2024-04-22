@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import { Input, Button, Textarea } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { FaRocket } from "react-icons/fa";

@@ -11,7 +11,7 @@ import {Divider} from "@nextui-org/react";
 
 function Dashboard() {
   // Todo: Get Admin from the database
-  const isAdmin = false;
+  const isAdmin = true;
   return (
     <div className="flex">
       <div className="w-80 min-h-screen bg-white border-x-1 p-6">
@@ -26,7 +26,7 @@ function Dashboard() {
           <NavItem title="ADD ITEMS" icon={<ImSpoonKnife size={22}/>} link={"/dashboard/aditems"}/>
           <NavItem title="MANAGE ITEMS" icon={<TfiMenuAlt size={22}/>} link={"/dashboard/manageItems"}/>
           <NavItem title="MANAGE BOOKINGS" icon={<FaBook size={22}/>} link={"/dashboard/manageBookings"}/>
-          <NavItem title="ALL USERS" icon={<FaUsers size={22}/>} link={"/dashboard/allUsers"}/>
+          <NavItem title="ALL USERS" icon={<FaUsers size={22}/>} link={"/dashboard/manageUsers"}/>
         </ul> :
         <ul className="space-y-1">
           <NavItem title="User Home" icon={<AiFillHome  size={22}/>} link={"/dashboard/userHome"}/>

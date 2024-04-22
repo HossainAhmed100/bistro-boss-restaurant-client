@@ -1,12 +1,12 @@
 import { Helmet } from "react-helmet-async"
-import SectionTitle from "../../../components/SectionTitle/SectionTitle"
 import {Table, TableHeader, Button, TableColumn, TableBody, TableRow, TableCell, User, Chip} from "@nextui-org/react";
 import { FaTrashCan } from "react-icons/fa6";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 
-const AllUser = () => {
+const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const {data: users = [], refetch} = useQuery({
     queryKey: ["users"],
@@ -98,4 +98,4 @@ const AllUser = () => {
   )
 }
 
-export default AllUser
+export default AllUsers

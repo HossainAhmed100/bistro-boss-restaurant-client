@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import {Table, TableHeader, Button, TableColumn, TableBody, TableRow, TableCell, Avatar} from "@nextui-org/react";
 import { FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 
 function UserMayBookings() {

@@ -1,4 +1,4 @@
-import SectionTitle from "../../../components/SectionTitle/SectionTitle"
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle"
 import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { LuClipboardList } from "react-icons/lu";
