@@ -2,8 +2,7 @@ import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import { Input, Button, Textarea } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import { FaRocket } from "react-icons/fa";
-
+import { ImSpoonKnife } from "react-icons/im";
 
 function AddItem() {
     const {register,handleSubmit,formState: { errors },} = useForm();
@@ -75,10 +74,23 @@ function AddItem() {
             color={errors.review ? "danger" : "default"}
             errorMessage={errors.review && "Kindly express your care in a short way."}
           />
-          <Button endContent={<FaRocket />} 
+          <Input 
+            isRequired
+            radius="sm" 
+            type="file" 
+            name="recipeName"
+            label="Recipe name" 
+            labelPlacement="outside" 
+            placeholder="Recipe name" 
+            {...register("email", { required: true })}
+            isInvalid={errors.recipeName ? "true" : "false"}
+            color={errors.recipeName ? "danger" : "default"}
+            errorMessage={errors.recipeName && "Recipe name Please!"}
+          />
+          <Button endContent={<ImSpoonKnife />} 
           radius="sm" type="submit" 
           className="bg-gradient-to-tr from-[#835D23] to-[#B58130] text-white shadow-lg">
-            Send Review
+            Add Item
           </Button>
          </form>
         </div>
