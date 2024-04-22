@@ -49,7 +49,7 @@ const Cart = () => {
         PAY
       </Button>
       </div>
-      <Table aria-label="Example table with custom cells">
+      <Table className="tableBgTag" aria-label="Example table with custom cells">
         <TableHeader>
         <TableColumn>TAG</TableColumn>
         <TableColumn>ITEM IMAGE</TableColumn>

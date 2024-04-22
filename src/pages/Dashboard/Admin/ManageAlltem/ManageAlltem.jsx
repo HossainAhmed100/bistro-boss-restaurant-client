@@ -5,6 +5,7 @@ import { FiEdit } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageAlltem = () => {
 //   const [cart, refetch] = useCart();
@@ -45,7 +46,7 @@ const ManageAlltem = () => {
       <div className="p-4 z-0 flex relative justify-between gap-4 bg-content1 overflow-auto rounded-large shadow-small w-full items-center">
         <h1 className="text-xl font-medium">TOTAL ITEMS: {4}</h1>
       </div>
-      <Table aria-label="Example table with custom cells">
+      <Table className="tableBgTag" aria-label="Example table with custom cells">
         <TableHeader>
         <TableColumn>TAG</TableColumn>
         <TableColumn>ITEM IMAGE</TableColumn>
@@ -65,12 +66,14 @@ const ManageAlltem = () => {
             <TableCell>${14.5}</TableCell>
             <TableCell>
             <div className="relative flex items-center gap-2">
+              <Link to={`/dashboard/updateItems/${item}`}>
             <Tooltip content="Edit Item">
-            <Button onClick={() => handleDelete(item)} isIconOnly aria-label="Delete Cart item"
+            <Button isIconOnly aria-label="Delete Cart item"
             className="bg-gradient-to-tr from-[#835D23] to-[#B58130] text-white shadow-lg">
             <FiEdit />
             </Button>
             </Tooltip>
+            </Link>
             <Tooltip content="Delete">
             <Button onClick={() => handleDelete(item)} isIconOnly aria-label="Delete Cart item" color="danger" >
             <FaTrashCan />

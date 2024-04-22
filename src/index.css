@@ -11,3 +11,8 @@ body{
 .cinzelFont{
     font-family: "Cinzel", serif;
 }
+
+.tableBgTag div table thead tr th{
+    background-color: #D1A054;
+    color: white;
+}
