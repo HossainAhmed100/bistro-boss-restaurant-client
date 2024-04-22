@@ -24,7 +24,7 @@ function Dashboard() {
         <ul className="space-y-1">
           <NavItem title="Admin Home" icon={<AiFillHome size={22}/>} link={"/dashboard/adminHome"}/>
           <NavItem title="ADD ITEMS" icon={<ImSpoonKnife size={22}/>} link={"/dashboard/aditems"}/>
-          <NavItem title="MANAGE ITEMS" icon={<TfiMenuAlt size={22}/>} link={"/dashboard/manageItems"}/>
+          <NavItem title="MANAGE ITEMS" icon={<TfiMenuAlt size={22}/>} link={"/dashboard/manageAllItems"}/>
           <NavItem title="MANAGE BOOKINGS" icon={<FaBook size={22}/>} link={"/dashboard/manageBookings"}/>
           <NavItem title="ALL USERS" icon={<FaUsers size={22}/>} link={"/dashboard/manageUsers"}/>
         </ul> :

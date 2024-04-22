@@ -18,6 +18,7 @@ import UserPayHistory from "../pages/Dashboard/User/UserPayHistory/UserPayHistor
 import AddReviews from "../pages/Dashboard/User/AddReviews/AddReviews";
 import UserMayBookings from "../pages/Dashboard/User/UserMayBookings/UserMayBookings";
 import AddItem from "../pages/Dashboard/Admin/AddItem/AddItem";
+import ManageAlltem from "../pages/Dashboard/Admin/ManageAlltem/ManageAlltem";
 
 export const router = createBrowserRouter([
     {
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
         {
           path: "aditems",
           element: <AddItem />
+        },
+        {
+          path: "manageAllItems",
+          element: <ManageAlltem />
         },
         {
           path: "manageUsers",
