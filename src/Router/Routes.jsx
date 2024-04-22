@@ -20,6 +20,7 @@ import UserMayBookings from "../pages/Dashboard/User/UserMayBookings/UserMayBook
 import AddItem from "../pages/Dashboard/Admin/AddItem/AddItem";
 import ManageAlltem from "../pages/Dashboard/Admin/ManageAlltem/ManageAlltem";
 import UpdateItem from "../pages/Dashboard/Admin/UpdateItem/UpdateItem";
+import ManageBookings from "../pages/Dashboard/Admin/ManageBookings/ManageBookings";
 
 export const router = createBrowserRouter([
     {
@@ -101,6 +102,10 @@ export const router = createBrowserRouter([
         {
           path: "updateItems/:itemId",
           element: <UpdateItem />
+        },
+        {
+          path: "manageBookings",
+          element: <ManageBookings />
         },
         {
           path: "manageUsers",

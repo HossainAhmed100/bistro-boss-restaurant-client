@@ -14,7 +14,7 @@ function UpdateItem() {
     };
   return (
     <section className="lg:mx-16 md:mx-8 mx-4">
-      <Helmet title='Give Reviews | User'/>
+      <Helmet title='Update Item | Admin | User'/>
       <SectionTitle heading={"ADD AN ITEM"} subHeading={"---What's new?---"}/>
       <div className="bg-gray-100 rounded p-12">
         <div>
