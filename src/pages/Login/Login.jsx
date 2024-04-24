@@ -9,15 +9,16 @@ import { FaGithub, FaGoogle, FaFacebookF  } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
-
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
   const captchaRef = useRef(null);
+  const axiosPublic = useAxiosPublic();
   const { loginUser, googleSignIn } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
   // const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const {register,handleSubmit,formState: { errors },} = useForm();
+  const {register,handleSubmit, reset,formState: { errors },} = useForm();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -37,11 +38,38 @@ const Login = () => {
     })
   }
 
+
   const handelGoogleSignIn = () => {
     googleSignIn()
     .then(result => {
       console.log(result.user)
-      navigate(from, {replace: true})
+      axiosPublic.post("/users", {
+        isAdmin: false,
+        userName: result?.user?.displayName,
+        userEmail: result?.user?.email,
+        userPic: result?.user?.photoURL,
+      })
+      .then(res => {
+        console.log(res.data)
+        if(res.data.insertedId){
+          reset()
+          Swal.fire({
+            icon: "success",
+            title: "User Created successfully.",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate("/")
+        }else{
+          Swal.fire({
+            icon: "error",
+            title: "This Email Alredy Exist",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate("/")
+        }
+      })
     })
   }
 

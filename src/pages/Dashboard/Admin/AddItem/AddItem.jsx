@@ -26,6 +26,7 @@ function AddItem() {
             variant="bordered" 
             labelPlacement="outside" 
             placeholder="Recipe name" 
+            classNames={{inputWrapper: ["bg-white"]}}
             {...register("email", { required: true })}
             isInvalid={errors.recipeName ? "true" : "false"}
             color={errors.recipeName ? "danger" : "default"}
@@ -43,6 +44,7 @@ function AddItem() {
             labelPlacement="outside" 
             placeholder="Category" 
             {...register("email", { required: true })}
+            classNames={{inputWrapper: ["bg-white"]}}
             isInvalid={errors.category ? "true" : "false"}
             color={errors.category ? "danger" : "default"}
             errorMessage={errors.category && "Do you have any suggestion for us?"}
@@ -58,6 +60,7 @@ function AddItem() {
             labelPlacement="outside" 
             placeholder="0" 
             {...register("email", { required: true })}
+            classNames={{inputWrapper: ["bg-white"]}}
             isInvalid={errors.suggestion ? "true" : "false"}
             color={errors.suggestion ? "danger" : "default"}
             errorMessage={errors.suggestion && "Do you have any suggestion for us?"}
@@ -70,6 +73,7 @@ function AddItem() {
             placeholder="Recipe Details"
             className="w-full"
             variant="bordered" 
+            classNames={{inputWrapper: ["bg-white"]}}
             isInvalid={errors.review ? "true" : "false"}
             color={errors.review ? "danger" : "default"}
             errorMessage={errors.review && "Kindly express your care in a short way."}
@@ -82,6 +86,7 @@ function AddItem() {
             label="Recipe name" 
             labelPlacement="outside" 
             placeholder="Recipe name" 
+            classNames={{inputWrapper: ["bg-white"]}}
             {...register("email", { required: true })}
             isInvalid={errors.recipeName ? "true" : "false"}
             color={errors.recipeName ? "danger" : "default"}
