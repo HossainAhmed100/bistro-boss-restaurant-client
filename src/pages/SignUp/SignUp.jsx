@@ -61,7 +61,7 @@ const SignUp = () => {
       .then(() => {
         console.log("User Profile Update")
         axiosPublic.post("/users", {
-          isAdmin: false,
+          role: "user",
           userName: data.name,
           userEmail: data.email,
           userPic: data.photoUrl,
