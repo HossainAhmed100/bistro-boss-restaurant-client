@@ -5,13 +5,12 @@ import { TbMessage2Star } from "react-icons/tb";
 import { MdBookmarkAdd,MdMail, MdMenu  } from "react-icons/md";
 import { ImSpoonKnife } from "react-icons/im";
 import { TfiMenuAlt } from "react-icons/tfi";
-
-
 import {Divider} from "@nextui-org/react";
+import useAdmin from "../hooks/useAdmin";
 
 function Dashboard() {
   // Todo: Get Admin from the database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex">
       <div className="w-80 min-h-screen bg-white border-x-1 p-6">

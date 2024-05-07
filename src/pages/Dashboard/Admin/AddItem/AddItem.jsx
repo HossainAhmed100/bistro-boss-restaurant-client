@@ -1,14 +1,34 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-import { Input, Button, Textarea } from "@nextui-org/react";
+import { Input, Button, Textarea, Select, SelectItem } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { ImSpoonKnife } from "react-icons/im";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+
+const image_hosting_key =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 function AddItem() {
     const {register,handleSubmit,formState: { errors },} = useForm();
-    const onSubmit = (data) => {
+    const axiosPublic = useAxiosPublic();
+    const onSubmit = async (data) => {
         console.log(data)
+        // image upload to imgbb and then get an url
+        const imageFile = {image: data.recipePhoto[0]};
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+          headers: {
+            'content-type': 'multipart/form-data',
+
+          }
+        })
+        console.log(res.data)
     };
+    const categoryItem = [
+      {label: "Salad", value: "salad"},
+      {label: "Pizza", value: "pizza"},
+      {label: "Drinks", value: "drinks"},
+      {label: "Desserts", value: "desserts"},
+    ]
   return (
     <section className="lg:mx-16 md:mx-8 mx-4">
       <Helmet title='Give Reviews | User'/>
@@ -27,43 +47,43 @@ function AddItem() {
             labelPlacement="outside" 
             placeholder="Recipe name" 
             classNames={{inputWrapper: ["bg-white"]}}
-            {...register("email", { required: true })}
-            isInvalid={errors.recipeName ? "true" : "false"}
+            {...register("recipeName", { required: true })}
+            isInvalid={errors.recipeName ? true : false}
             color={errors.recipeName ? "danger" : "default"}
             errorMessage={errors.recipeName && "Recipe name Please!"}
           />
          <div className="flex items-center lg:justify-between w-full gap-4">
-         <Input 
-            isRequired
-            radius="sm" 
-            type="text" 
-            name="category"
-            label="Category" 
-            className="w-full"
+          <Select isRequired {...register("recipeCategory", { required: true })}
+            size="md"
+            radius="sm"
             variant="bordered" 
             labelPlacement="outside" 
-            placeholder="Category" 
-            {...register("email", { required: true })}
-            classNames={{inputWrapper: ["bg-white"]}}
-            isInvalid={errors.category ? "true" : "false"}
-            color={errors.category ? "danger" : "default"}
-            errorMessage={errors.category && "Do you have any suggestion for us?"}
-          />
+            classNames={{ trigger: "bg-white",}}
+            isInvalid={errors.recipeCategory ? true : false}
+            color={errors.recipeCategory ? "danger" : "default"}
+            errorMessage={errors.recipeCategory && "Do you have any suggestion for us?"}
+            label="Category">
+            {categoryItem.map((category) => (
+              <SelectItem key={category.value} value={category.value}>
+                {category.label}
+              </SelectItem>
+            ))}
+          </Select>
          <Input 
             isRequired
             radius="sm" 
             type="number" 
-            name="suggestion"
+            name="recipePrice"
             label="Price" 
             className="w-full"
             variant="bordered" 
             labelPlacement="outside" 
             placeholder="0" 
-            {...register("email", { required: true })}
+            {...register("recipePrice", { required: true })}
             classNames={{inputWrapper: ["bg-white"]}}
-            isInvalid={errors.suggestion ? "true" : "false"}
-            color={errors.suggestion ? "danger" : "default"}
-            errorMessage={errors.suggestion && "Do you have any suggestion for us?"}
+            isInvalid={errors.recipePrice ? true : false}
+            color={errors.recipePrice ? "danger" : "default"}
+            errorMessage={errors.recipePrice && "Do you have any suggestion for us?"}
           />
          </div>
           <Textarea
@@ -72,26 +92,30 @@ function AddItem() {
             labelPlacement="outside"
             placeholder="Recipe Details"
             className="w-full"
-            variant="bordered" 
+            variant="bordered"
+            {...register("recipeDetails", { required: true })}
             classNames={{inputWrapper: ["bg-white"]}}
-            isInvalid={errors.review ? "true" : "false"}
-            color={errors.review ? "danger" : "default"}
-            errorMessage={errors.review && "Kindly express your care in a short way."}
+            isInvalid={errors.recipeDetails ? true : false}
+            color={errors.recipeDetails ? "danger" : "default"}
+            errorMessage={errors.recipeDetails && "Recipe Details."}
           />
-          <Input 
-            isRequired
-            radius="sm" 
-            type="file" 
-            name="recipeName"
-            label="Recipe name" 
-            labelPlacement="outside" 
-            placeholder="Recipe name" 
-            classNames={{inputWrapper: ["bg-white"]}}
-            {...register("email", { required: true })}
-            isInvalid={errors.recipeName ? "true" : "false"}
-            color={errors.recipeName ? "danger" : "default"}
-            errorMessage={errors.recipeName && "Recipe name Please!"}
-          />
+          <div className="w-full">
+          <p className="text-sm text-gray-800 mb-1">Recipe Photo <span>*</span></p>
+          <input type="file" {...register("recipePhoto")}
+          className="block w-full bg-white shadow-sm border-2 
+            border-gray-200 p-3 rounded-lg 
+            text-sm text-gray-500
+            file:me-4 file:py-2 file:px-4
+            file:rounded-lg file:border-0
+            file:text-sm
+            file:bg-gradient-to-tr from-gray-300 to-gray-200 file:text-gray-800
+            hover:file:opacity-90
+            file:disabled:opacity-50 file:disabled:pointer-events-none
+            dark:text-neutral-500
+            dark:file:bg-blue-500
+            dark:hover:file:bg-blue-400
+          "/>
+          </div>
           <Button endContent={<ImSpoonKnife />} 
           radius="sm" type="submit" 
           className="bg-gradient-to-tr from-[#835D23] to-[#B58130] text-white shadow-lg">
