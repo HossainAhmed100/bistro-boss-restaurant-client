@@ -4,23 +4,44 @@ import { Input, Button, Textarea, Select, SelectItem } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { ImSpoonKnife } from "react-icons/im";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const image_hosting_key =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 function AddItem() {
-    const {register,handleSubmit,formState: { errors },} = useForm();
+    const {register,handleSubmit,formState: { errors }, reset} = useForm();
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const onSubmit = async (data) => {
         console.log(data)
         // image upload to imgbb and then get an url
         const imageFile = {image: data.recipePhoto[0]};
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
-          headers: {
-            'content-type': 'multipart/form-data',
-
-          }
+          headers: {'content-type': 'multipart/form-data',}
         })
+        if(res.data.success){
+          // now send the menu item data to server with image
+          const {recipeName, recipeDetails, recipeCategory, recipePrice} = data;
+          const menuItem = {
+            name: recipeName,
+            recipe: recipeDetails,
+            image: res.data.data.display_url,
+            category: recipeCategory,
+            price: parseFloat(recipePrice),
+          };
+          const menuRes = await axiosSecure.post("/menu", menuItem);
+          console.log(menuRes.data)
+          if(menuRes.data.insertedId){
+            // show success popup
+            reset()
+            Swal.fire({
+              icon: "success",
+              title: "Recipe Added Successfully.",
+            });
+          }
+        }
         console.log(res.data)
     };
     const categoryItem = [
