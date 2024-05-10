@@ -23,13 +23,12 @@ function AddItem() {
         })
         if(res.data.success){
           // now send the menu item data to server with image
-          const {recipeName, recipeDetails, recipeCategory, recipePrice} = data;
           const menuItem = {
-            name: recipeName,
-            recipe: recipeDetails,
+            name: data.recipeName,
+            recipe: data.recipeDetails,
             image: res.data.data.display_url,
-            category: recipeCategory,
-            price: parseFloat(recipePrice),
+            category: data.recipeCategory,
+            price: parseFloat(data.recipePrice),
           };
           const menuRes = await axiosSecure.post("/menu", menuItem);
           console.log(menuRes.data)
@@ -38,7 +37,9 @@ function AddItem() {
             reset()
             Swal.fire({
               icon: "success",
-              title: "Recipe Added Successfully.",
+              title: `${data.recipeName} is Added Successfully.`,
+              showConfirmButton: false,
+              timer: 1500
             });
           }
         }
@@ -49,6 +50,7 @@ function AddItem() {
       {label: "Pizza", value: "pizza"},
       {label: "Drinks", value: "drinks"},
       {label: "Desserts", value: "desserts"},
+      {label: "Offered", value: "offered"},
     ]
   return (
     <section className="lg:mx-16 md:mx-8 mx-4">
