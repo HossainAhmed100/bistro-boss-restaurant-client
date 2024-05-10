@@ -7,31 +7,20 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useMenu from "../../../../hooks/useMenu";
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const columns = [
-  {
-    key: "itemImage",
-    label: "ITEM IMAGE",
-  },
-  {
-    key: "itemName",
-    label: "ITEM NAME",
-  },
-  {
-    key: "price",
-    label: "PRICE",
-  },
-  {
-    key: "actions",
-    label: "ACTIONS",
-  },
+  { key: "itemImage", label: "ITEM IMAGE", },
+  { key: "itemName", label: "ITEM NAME", },
+  { key: "price", label: "PRICE", },
+  { key: "actions", label: "ACTIONS", },
 ];
 
 const ManageAlltem = () => {
   const [menu, , refetch] = useMenu();
   const axiosSecure = useAxiosSecure();
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const rowsPerPage = 4;
   const pages = Math.ceil(menu.length / rowsPerPage);
   const items = useMemo(() => {
@@ -40,6 +29,10 @@ const ManageAlltem = () => {
 
     return menu.slice(start, end);
   }, [page, menu]);
+
+  const handleUpdate = (url) => {
+    navigate(url)
+  };
 
   const handleDelete = (item) => {
     Swal.fire({
@@ -66,6 +59,8 @@ const ManageAlltem = () => {
       }
     });
   }
+
+
   return (
     <div>
       <Helmet title='Manage All Items | Admin | Bistro Boss'/>
@@ -96,7 +91,7 @@ const ManageAlltem = () => {
         <TableBody items={items} emptyContent={"No rows to display."}>
         {(item) => (
           <TableRow key={item._id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey, handleDelete)}</TableCell>}
+            {(columnKey) => <TableCell>{renderCell(item, columnKey, handleDelete, handleUpdate)}</TableCell>}
           </TableRow>
         )}
         </TableBody>
@@ -107,7 +102,7 @@ const ManageAlltem = () => {
   )
 }
 
-const renderCell = (item, columnKey, handleDelete) => {
+const renderCell = (item, columnKey, handleDelete, handleUpdate) => {
   const cellValue = item[columnKey];
 
   switch (columnKey) {
@@ -126,14 +121,13 @@ const renderCell = (item, columnKey, handleDelete) => {
     case "actions":
       return (
         <div className="relative flex items-center gap-2">
-            <Tooltip content="Edit Item">
-          <Link to={`/dashboard/updateItems/${item?._id}`}>
-              <p aria-label="Delete Cart item"
-              className="bg-gradient-to-tr from-[#835D23] to-[#B58130] text-white shadow-lg">
-                <FiEdit />
-              </p>
-          </Link>
-            </Tooltip>
+          <Tooltip content="Edit Item">
+            <Button aria-label="Update Cart item" isIconOnly
+            onClick={() => handleUpdate(`/dashboard/updateItems/${item?._id}`)} 
+            className="bg-gradient-to-tr from-[#835D23] to-[#B58130] text-white shadow-lg">
+              <FiEdit />
+            </Button>
+          </Tooltip>
           <Tooltip content="Delete">
             <Button onClick={() => handleDelete(item)} isIconOnly aria-label="Delete Cart item" color="danger" >
               <FaTrashCan />
